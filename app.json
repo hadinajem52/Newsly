@@ -1,4 +1,10 @@
 {
+  "updates": {
+  "enabled": true,
+  "checkAutomatically": "ON_LOAD",
+  "fallbackToCacheTimeout": 0
+}
+,
   "expo": {
     "name": "Newslyy",
     "slug": "Newslyy",
@@ -16,6 +22,7 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.newslyy.app",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -23,6 +30,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "5e898a42-978d-4b72-a57d-dbeb78cd49cc"
+      }
     }
   }
 }
