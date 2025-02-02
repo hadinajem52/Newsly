@@ -5,11 +5,9 @@ import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
-// Import your screens
 import HomeScreen from './src/screens/HomeScreen';
-import CategoriesScreen from './src/screens/CategoriesScreen'; // Crypto screen
-import StocksScreen from './src/screens/StocksScreen'; // New Stocks screen
+import CategoriesScreen from './src/screens/CategoriesScreen'; 
+import StocksScreen from './src/screens/StocksScreen'; 
 import SavedArticlesScreen from './src/screens/SavedArticlesScreen';
 import ArticleDetailsScreen from './src/screens/ArticleDetailsScreen';
 import SettingsScreen from './src/screens/SettingsScreen';
@@ -37,12 +35,10 @@ function HomeStack() {
 export default function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
-  // Function to load the dark mode setting from AsyncStorage
   const loadDarkModeSetting = async () => {
     try {
       const savedSetting = await AsyncStorage.getItem('@darkMode');
       if (savedSetting !== null) {
-        // AsyncStorage stores values as strings, so convert to boolean
         setIsDarkMode(savedSetting === 'true');
       }
     } catch (error) {
@@ -50,7 +46,6 @@ export default function App() {
     }
   };
 
-  // Function to toggle dark mode and persist the setting
   const toggleDarkMode = async () => {
     try {
       const newValue = !isDarkMode;
@@ -61,7 +56,6 @@ export default function App() {
     }
   };
 
-  // Load the setting when the component mounts
   useEffect(() => {
     loadDarkModeSetting();
   }, []);
@@ -77,9 +71,9 @@ export default function App() {
             if (route.name === 'Home') {
               iconName = 'home-outline';
             } else if (route.name === 'Crypto') {
-              iconName = 'logo-bitcoin'; // Crypto-related icon
+              iconName = 'logo-bitcoin'; 
             } else if (route.name === 'Stocks') {
-              iconName = 'bar-chart-outline'; // Stocks-related icon
+              iconName = 'bar-chart-outline'; 
             } else if (route.name === 'Saved Articles') {
               iconName = 'bookmark-outline';
             } else if (route.name === 'Settings') {

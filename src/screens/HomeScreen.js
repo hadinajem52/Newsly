@@ -8,19 +8,18 @@ import {
   RefreshControl, 
   StyleSheet, 
   Alert,
-  Image // Using React Native's built-in Image component
+  Image 
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from '@react-navigation/native';
 
-const API_KEY = '63RwGpultTtuzL0ttWIdZUmBFVerxBlG5KdqIT8B__QVAZFI'; // Replace with your CurrentsAPI key
+const API_KEY = '63RwGpultTtuzL0ttWIdZUmBFVerxBlG5KdqIT8B__QVAZFI'; 
 const CURRENTS_API_URL = `https://api.currentsapi.services/v1/latest-news?apiKey=${API_KEY}`;
 
 export default function HomeScreen({ navigation }) {
   const { dark } = useTheme();
 
-  // Define dynamic colors based on theme
   const containerBackground = dark ? '#121212' : '#f5f5f5';
   const cardBackground = dark ? '#1e1e1e' : '#fff';
   const titleColor = dark ? '#fff' : '#333';
@@ -33,7 +32,6 @@ export default function HomeScreen({ navigation }) {
   const [savedArticles, setSavedArticles] = useState([]);
   const [page, setPage] = useState(1);
 
-  // Function to save an article
   const saveArticle = async (article) => {
     try {
       const saved = await AsyncStorage.getItem('savedArticles');
@@ -52,7 +50,6 @@ export default function HomeScreen({ navigation }) {
     }
   };
 
-  // Fetch news from CurrentsAPI (with page for pagination)
   const fetchNews = async (pageNumber = 1) => {
     setLoading(true);
     try {
@@ -69,7 +66,6 @@ export default function HomeScreen({ navigation }) {
     setLoading(false);
   };
 
-  // Refresh the list
   const onRefresh = async () => {
     setRefreshing(true);
     setPage(1);
@@ -78,7 +74,6 @@ export default function HomeScreen({ navigation }) {
     setRefreshing(false);
   };
 
-  // Load more articles when user scrolls to the bottom
   const loadMoreArticles = () => {
     if (!loading) {
       setPage(prevPage => {
@@ -93,7 +88,6 @@ export default function HomeScreen({ navigation }) {
     fetchNews(page);
   }, [page]);
 
-  // Check if the article is already saved
   const isSaved = (article) => {
     return savedArticles.some(
       (savedArticle) => savedArticle.title === article.title
@@ -126,7 +120,7 @@ export default function HomeScreen({ navigation }) {
                   source={
                     item.image
                       ? { uri: item.image }
-                      : require('./assets/placeholder.png') // local placeholder image
+                      : require('./assets/placeholder.png') 
                   }
                   resizeMode="cover"
                 />

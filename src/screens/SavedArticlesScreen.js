@@ -17,7 +17,6 @@ import { useFocusEffect, useTheme } from '@react-navigation/native';
 export default function SavedArticlesScreen({ navigation }) {
   const { dark } = useTheme();
 
-  // Define dynamic colors based on the theme
   const containerBackground = dark ? '#121212' : '#f5f5f5';
   const titleColor = dark ? '#fff' : '#333';
   const textColor = dark ? '#ccc' : '#666';
@@ -28,7 +27,6 @@ export default function SavedArticlesScreen({ navigation }) {
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
 
-  // Fetch saved articles from AsyncStorage
   const fetchSavedArticles = async () => {
     setLoading(true);
     try {
@@ -41,21 +39,18 @@ export default function SavedArticlesScreen({ navigation }) {
     setLoading(false);
   };
 
-  // Refresh function for pull-to-refresh
   const onRefresh = async () => {
     setRefreshing(true);
     await fetchSavedArticles();
     setRefreshing(false);
   };
 
-  // Auto-refresh when screen gains focus
   useFocusEffect(
     useCallback(() => {
       fetchSavedArticles();
     }, [])
   );
 
-  // Remove article from saved list
   const removeArticle = async (title) => {
     if (!title) return;
     try {

@@ -18,7 +18,6 @@ import Markdown from 'react-native-markdown-display';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { useTheme } from '@react-navigation/native';
 
-// Static list of top 10 stocks (including NVIDIA)
 const topStocks = [ 
   {
     name: 'NVIDIA Corporation',
@@ -103,7 +102,6 @@ const topStocks = [
   },
 ];
 
-// Set up Google Generative AI (make sure you have valid credentials)
 const apiKey = 'AIzaSyDQ1s3wjcuSpZe5ETX6Ocx7r27Im3NICcA';
 const genAI = new GoogleGenerativeAI(apiKey);
 export const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash-exp' });
@@ -118,7 +116,6 @@ export const generationConfig = {
 export default function StocksScreen() {
   const { dark } = useTheme();
 
-  // State declarations
   const [stocksData, setStocksData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedStock, setSelectedStock] = useState(null);
@@ -129,12 +126,10 @@ export default function StocksScreen() {
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
-    // Instead of fetching from an API, we load the static topStocks data
     setStocksData(topStocks);
     setLoading(false);
   }, []);
 
-  // Returns the TradingView chart widget HTML string for a stock.
   const getTradingViewScript = (stock) => {
     const prefix = stock.exchange || 'NASDAQ';
     const formattedSymbol = `${prefix}:${stock.symbol.toUpperCase()}`;
@@ -169,7 +164,6 @@ export default function StocksScreen() {
     setIsChartModalVisible(true);
   };
 
-  // Fetch AI insights about a stock using Gemini AI
   const fetchAIInsights = async (stock) => {
     setLoadingInsights(true);
     setInsightsModalVisible(true);
@@ -205,13 +199,11 @@ Please provide:
     }
   };
 
-  // Filter stocks based on the search query (by name or symbol)
   const filteredData = stocksData.filter((item) =>
     item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
     item.symbol.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  // Dynamic colors based on the theme
   const backgroundColor = dark ? '#121212' : '#f5f5f5';
   const modalBackground = dark ? '#1e1e1e' : '#fff';
   const primaryTextColor = dark ? '#fff' : '#000';
@@ -223,7 +215,6 @@ Please provide:
     <View style={[styles.container, { backgroundColor }]}>
       <Text style={[styles.title, { color: primaryTextColor }]}>Top 10 Stocks</Text>
 
-      {/* Search Bar */}
       <View style={styles.searchContainer}>
         <TextInput
           style={[
@@ -277,7 +268,6 @@ Please provide:
         />
       )}
 
-      {/* Chart Modal */}
       <Modal
         visible={isChartModalVisible}
         animationType="slide"
@@ -296,7 +286,6 @@ Please provide:
         </View>
       </Modal>
 
-      {/* AI Insights Modal */}
       <Modal
         visible={insightsModalVisible}
         animationType="slide"

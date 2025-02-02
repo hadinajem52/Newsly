@@ -24,7 +24,7 @@ import { useTheme } from '@react-navigation/native';
 const CRYPTO_API_URL =
   'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd';
 
-const apiKey = "AIzaSyDQ1s3wjcuSpZe5ETX6Ocx7r27Im3NICcA"; // Replace with your actual API key
+const apiKey = "AIzaSyDQ1s3wjcuSpZe5ETX6Ocx7r27Im3NICcA";
 const genAI = new GoogleGenerativeAI(apiKey);
 
 export const model = genAI.getGenerativeModel({
@@ -40,8 +40,7 @@ export const generationConfig = {
 };
 
 export default function CryptoScreen() {
-  // Instead of using a passed prop, we use the useTheme hook:
-  const { dark } = useTheme(); // dark is a boolean that is true when in dark mode
+  const { dark } = useTheme(); 
   console.log("useTheme dark:", dark);
 
   // State declarations
@@ -56,7 +55,7 @@ export default function CryptoScreen() {
   const [searchQuery, setSearchQuery] = useState('');
 
   // Alert states
-  const [alerts, setAlerts] = useState([]); // Array of { coinId, targetPrice }
+  const [alerts, setAlerts] = useState([]); 
   const [alertModalVisible, setAlertModalVisible] = useState(false);
   const [currentAlertCoin, setCurrentAlertCoin] = useState(null);
   const [alertTargetPrice, setAlertTargetPrice] = useState('');
@@ -121,7 +120,6 @@ export default function CryptoScreen() {
     fetchCryptoData().finally(() => setRefreshing(false));
   };
 
-  // Returns TradingView chart widget HTML string (theme hardcoded to dark for chart)
   const getTradingViewScript = (cryptoSymbol) => {
     const formattedSymbol = `BINANCE:${cryptoSymbol.toUpperCase()}USDT`;
     return `
@@ -155,14 +153,12 @@ export default function CryptoScreen() {
     setIsChartModalVisible(true);
   };
 
-  // Open Live Transactions Modal for a specific coin
   const openLiveTransactions = (coin) => {
     setLiveTransactionsCoin(coin);
-    setLiveTransactions([]); // Clear previous trades
+    setLiveTransactions([]); 
     setLiveTransactionsModalVisible(true);
   };
 
-  // Connect to Binance WebSocket when live transactions modal is open.
   useEffect(() => {
     let ws;
     if (liveTransactionsModalVisible && liveTransactionsCoin) {
@@ -231,7 +227,6 @@ Please provide:
     }
   };
 
-  // Check alerts against latest data
   const checkAlerts = (cryptoData, alerts) => {
     alerts.forEach((alertItem) => {
       const coin = cryptoData.find((c) => c.id === alertItem.coinId);
@@ -244,14 +239,12 @@ Please provide:
     });
   };
 
-  // Open alert modal
   const openAlertModal = (coin) => {
     setCurrentAlertCoin(coin);
     setAlertTargetPrice('');
     setAlertModalVisible(true);
   };
 
-  // Set alert and close modal
   const handleSetAlert = () => {
     if (!alertTargetPrice) {
       Alert.alert('Error', 'Please enter a valid target price.');
@@ -266,12 +259,10 @@ Please provide:
     Alert.alert('Success', `Alert set for ${currentAlertCoin.name} at $${alertTargetPrice}`);
   };
 
-  // Filter crypto data based on search query
   const filteredData = cryptoData.filter((item) =>
     item.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  // --- Define Dynamic Colors Based on Theme ---
   const backgroundColor = dark ? '#121212' : '#f5f5f5';
   const modalBackground = dark ? '#1e1e1e' : '#fff';
   const primaryTextColor = dark ? '#fff' : '#000';
@@ -286,7 +277,6 @@ Please provide:
       </Text>
      
 
-      {/* Search Bar */}
       <View style={styles.searchContainer}>
         <TextInput
           style={[
@@ -377,14 +367,12 @@ Please provide:
         />
       )}
 
-      {/* Chart Modal */}
       <Modal
         visible={isChartModalVisible}
         animationType="slide"
         onRequestClose={() => setIsChartModalVisible(false)}
       >
         <View style={[styles.modalContainer, { backgroundColor: modalBackground }]}>
-          {/* Red X button in top right */}
           <TouchableOpacity
             style={styles.modalCloseButton}
             onPress={() => setIsChartModalVisible(false)}
@@ -404,14 +392,12 @@ Please provide:
         </View>
       </Modal>
 
-      {/* AI Insights Modal */}
       <Modal
         visible={insightsModalVisible}
         animationType="slide"
         onRequestClose={() => setInsightsModalVisible(false)}
       >
         <View style={[styles.modalContainer, { backgroundColor: modalBackground }]}>
-          {/* Red X button in top right */}
           <TouchableOpacity
             style={styles.modalCloseButton}
             onPress={() => setInsightsModalVisible(false)}
@@ -440,14 +426,12 @@ Please provide:
         </View>
       </Modal>
 
-      {/* Alert Modal */}
       <Modal
         visible={alertModalVisible}
         animationType="slide"
         onRequestClose={() => setAlertModalVisible(false)}
       >
         <View style={[styles.modalContainer, { backgroundColor: modalBackground }]}>
-          {/* Red X button in top right */}
           <TouchableOpacity
             style={styles.modalCloseButton}
             onPress={() => setAlertModalVisible(false)}
@@ -489,14 +473,12 @@ Please provide:
         </View>
       </Modal>
 
-      {/* Live Transactions Modal */}
       <Modal
         visible={liveTransactionsModalVisible}
         animationType="slide"
         onRequestClose={() => setLiveTransactionsModalVisible(false)}
       >
         <View style={[styles.modalContainer, { backgroundColor: modalBackground }]}>
-          {/* Red X button in top right */}
           <TouchableOpacity
             style={styles.modalCloseButton}
             onPress={() => setLiveTransactionsModalVisible(false)}
