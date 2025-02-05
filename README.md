@@ -11,6 +11,7 @@ A mobile app built with React Native and Expo that delivers the latest news, cry
   - Browse the most recent news articles from a live news API.
   - Save your favorite articles to read later.
   - Detailed article view with clear formatting.
+
 ![newspg](https://github.com/user-attachments/assets/fc4cb580-bca1-48e2-ad06-c3c22e72f191)
 
 
