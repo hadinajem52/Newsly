@@ -14,7 +14,7 @@ import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from '@react-navigation/native';
 
-const API_KEY = '63RwGpultTtuzL0ttWIdZUmBFVerxBlG5KdqIT8B__QVAZFI'; 
+const API_KEY = 'x'; 
 const CURRENTS_API_URL = `https://api.currentsapi.services/v1/latest-news?apiKey=${API_KEY}`;
 
 export default function HomeScreen({ navigation }) {

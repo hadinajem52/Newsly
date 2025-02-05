@@ -24,7 +24,7 @@ import { useTheme } from '@react-navigation/native';
 const CRYPTO_API_URL =
   'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd';
 
-const apiKey = "AIzaSyDQ1s3wjcuSpZe5ETX6Ocx7r27Im3NICcA";
+const apiKey = "x";
 const genAI = new GoogleGenerativeAI(apiKey);
 
 export const model = genAI.getGenerativeModel({
@@ -70,7 +70,6 @@ export default function CryptoScreen() {
     fetchCryptoData();
   }, []);
 
-  // Register for push notifications using expo-notifications
   async function registerForPushNotificationsAsync() {
     const { status: existingStatus } = await Notifications.getPermissionsAsync();
     let finalStatus = existingStatus;
@@ -84,7 +83,6 @@ export default function CryptoScreen() {
     }
   }
 
-  // Send a local notification immediately
   async function sendLocalNotification(title, body) {
     await Notifications.scheduleNotificationAsync({
       content: {
@@ -96,7 +94,6 @@ export default function CryptoScreen() {
     });
   }
 
-  // Fetch crypto data from CoinGecko
   const fetchCryptoData = async () => {
     setLoading(true);
     try {
@@ -171,7 +168,6 @@ export default function CryptoScreen() {
         const value = (parseFloat(tradeData.p) * parseFloat(tradeData.q)).toFixed(6);
         const time = new Date(tradeData.T).toLocaleTimeString();
         const side = tradeData.m ? 'sell' : 'buy';
-        // Create a unique key by combining trade id and trade time.
         const uniqueId = `${tradeData.t}-${tradeData.T}`;
         setLiveTransactions(prev => [
           { id: uniqueId, price, quantity, value, time, side },
@@ -638,7 +634,7 @@ const styles = StyleSheet.create({
     top: 20,
     right: 20,
     zIndex: 2,
-    elevation: 10, // Added elevation for Android
+    elevation: 10, 
   },
   label: {
     fontSize: 16,
