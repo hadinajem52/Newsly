@@ -1,6 +1,7 @@
 # Newsly
 
 # Finance & News Briefing App
+![WhatsApp Image 2025-02-05 at 18 46 05_0056cc27](https://github.com/user-attachments/assets/0ab3a9dc-c796-453b-9e3d-409b14936c92)
 ![WhatsApp Image 2025-02-05 at 18 38 54_d55acc0f](https://github.com/user-attachments/assets/2f8d0cb1-e116-4f69-ac4c-b7c60e6ca017)
 ![WhatsApp Image 2025-02-05 at 18 38 27_1f032cab](https://github.com/user-attachments/assets/76aee1a9-a3df-4088-845c-0a7474d684d9)
 ![WhatsApp Image 2025-02-05 at 18 38 27_b0936b05](https://github.com/user-attachments/assets/dd3c7056-ff1a-4a09-a109-aabc1474179f)
