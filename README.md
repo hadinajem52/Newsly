@@ -7,6 +7,8 @@
 ![WhatsApp Image 2025-02-05 at 18 38 27_b0936b05](https://github.com/user-attachments/assets/dd3c7056-ff1a-4a09-a109-aabc1474179f)
 ![WhatsApp Image 2025-02-05 at 18 38 57_fe6cd4e9](https://github.com/user-attachments/assets/6f39dd16-6c59-4862-a9f1-5fb0559b9a99)
 ![WhatsApp Image 2025-02-05 at 18 38 27_0ffbed70](https://github.com/user-attachments/assets/0d0edd4c-36f8-4768-b48d-e306b92ab993)
+
+
 A mobile app built with React Native and Expo that delivers the latest news, crypto and stock market insights, and AI-powered analysis—all in one place. The app features a sleek, dark/light mode toggle, persistent saved articles, and integrated TradingView charts to enhance your market briefing experience.
 
 ## Features
