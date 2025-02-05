@@ -24,7 +24,6 @@ const topStocks = [
     symbol: 'NVDA',
     exchange: 'NASDAQ',
     type: 'Common Stock',
-    price: 600.0,
     image: 'https://www.nvidia.com/content/dam/en-zz/Solutions/about-nvidia/logo-and-brand/02-nvidia-logo-color-grn-500x200-4c25-p@2x.png',
   },
   {
@@ -32,7 +31,6 @@ const topStocks = [
     symbol: 'AAPL',
     exchange: 'NASDAQ',
     type: 'Common Stock',
-    price: 150.0,
     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuOuCMjRB6RWbXLspgUyo32g6v_GZ74Bb_Zg&s',
   },
   {
@@ -40,7 +38,6 @@ const topStocks = [
     symbol: 'MSFT',
     exchange: 'NASDAQ',
     type: 'Common Stock',
-    price: 300.0,
     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQ9Nzs4SiiuIppGOTKQM9uscOBmfVg42rYTA&s',
   },
   {
@@ -48,7 +45,6 @@ const topStocks = [
     symbol: 'AMZN',
     exchange: 'NASDAQ',
     type: 'Common Stock',
-    price: 3300.0,
     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRc0L9pU1IjqhK0u8GC0kQBXDB2sj_nd4UDVQ&s',
   },
   {
@@ -56,7 +52,6 @@ const topStocks = [
     symbol: 'GOOGL',
     exchange: 'NASDAQ',
     type: 'Common Stock',
-    price: 2800.0,
     image: 'https://logos-world.net/wp-content/uploads/2022/05/Alphabet-Emblem.png',
   },
   {
@@ -64,7 +59,6 @@ const topStocks = [
     symbol: 'META',
     exchange: 'NASDAQ',
     type: 'Common Stock',
-    price: 200.0,
     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQb5gAwN9hYWdmJaV5B2BUhS8_ZH10ZkVczkw&s',
   },
   {
@@ -72,7 +66,6 @@ const topStocks = [
     symbol: 'TSLA',
     exchange: 'NASDAQ',
     type: 'Common Stock',
-    price: 900.0,
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Tesla_logo.png/640px-Tesla_logo.png',
   },
  
@@ -81,7 +74,6 @@ const topStocks = [
     symbol: 'BRK.B',
     exchange: 'NYSE',
     type: 'Common Stock',
-    price: 280.0,
     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6FuwQwwgmWTBJKP2PjYdRQKTFzioTMJt3_Q&s',
   },
   {
@@ -89,7 +81,6 @@ const topStocks = [
     symbol: 'JPM',
     exchange: 'NYSE',
     type: 'Common Stock',
-    price: 140.0,
     image: 'https://logoeps.com/wp-content/uploads/2013/02/jpmorgan-vector-logo.png',
   },
   {
@@ -97,7 +88,6 @@ const topStocks = [
     symbol: 'V',
     exchange: 'NYSE',
     type: 'Common Stock',
-    price: 220.0,
     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRM59k7Abl4cy6rblPLwmuhdRY_mdW5jiE7tQ&s',
   },
 ];
@@ -173,7 +163,6 @@ export default function StocksScreen() {
       const prompt = `
 ## Detailed and Creative Analysis on ${stock.name} (${stock.symbol})
 
-**Current Price:** $${parseFloat(stock.price).toFixed(2)}
 **Exchange:** ${stock.exchange}
 **Type:** ${stock.type}
 
@@ -250,9 +239,7 @@ Please provide:
                   </Text>
                 </View>
               </View>
-              <Text style={[styles.price, { color: secondaryTextColor }]}>
-                {item.price ? `$${parseFloat(item.price).toFixed(2)}` : 'N/A'}
-              </Text>
+             
               <View style={styles.buttonsRow}>
                 <TouchableOpacity style={styles.chartButton} onPress={() => openStockChart(item.symbol)}>
                   <Ionicons name="bar-chart" size={20} color="#fff" />
@@ -360,7 +347,6 @@ const styles = StyleSheet.create({
   stockImage: { width: 30, height: 30, marginRight: 10 },
   name: { fontSize: 18, fontWeight: '600' },
   subText: { fontSize: 14, marginTop: 4 },
-  price: { fontSize: 16 },
   buttonsRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',

@@ -171,8 +171,10 @@ export default function CryptoScreen() {
         const value = (parseFloat(tradeData.p) * parseFloat(tradeData.q)).toFixed(6);
         const time = new Date(tradeData.T).toLocaleTimeString();
         const side = tradeData.m ? 'sell' : 'buy';
+        // Create a unique key by combining trade id and trade time.
+        const uniqueId = `${tradeData.t}-${tradeData.T}`;
         setLiveTransactions(prev => [
-          { id: tradeData.t, price, quantity, value, time, side },
+          { id: uniqueId, price, quantity, value, time, side },
           ...prev.slice(0, 30)
         ]);
       };
@@ -276,7 +278,6 @@ Please provide:
         Cryptocurrency Prices
       </Text>
      
-
       <View style={styles.searchContainer}>
         <TextInput
           style={[
@@ -637,6 +638,7 @@ const styles = StyleSheet.create({
     top: 20,
     right: 20,
     zIndex: 2,
+    elevation: 10, // Added elevation for Android
   },
   label: {
     fontSize: 16,

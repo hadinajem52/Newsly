@@ -5,6 +5,8 @@ import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+
 import HomeScreen from './src/screens/HomeScreen';
 import CategoriesScreen from './src/screens/CategoriesScreen'; 
 import StocksScreen from './src/screens/StocksScreen'; 
@@ -63,39 +65,41 @@ export default function App() {
   const navTheme = isDarkMode ? DarkTheme : DefaultTheme;
 
   return (
-    <NavigationContainer theme={navTheme}>
-      <Tab.Navigator
-        screenOptions={({ route }) => ({
-          tabBarIcon: ({ color, size }) => {
-            let iconName;
-            if (route.name === 'Home') {
-              iconName = 'home-outline';
-            } else if (route.name === 'Crypto') {
-              iconName = 'logo-bitcoin'; 
-            } else if (route.name === 'Stocks') {
-              iconName = 'bar-chart-outline'; 
-            } else if (route.name === 'Saved Articles') {
-              iconName = 'bookmark-outline';
-            } else if (route.name === 'Settings') {
-              iconName = 'settings-outline';
-            }
-            return <Ionicons name={iconName} size={size} color={color} />;
-          },
-        })}
-      >
-        <Tab.Screen name="Home" component={HomeStack} />
-        <Tab.Screen name="Crypto" component={CategoriesScreen} />
-        <Tab.Screen name="Stocks" component={StocksScreen} />
-        <Tab.Screen name="Saved Articles" component={SavedArticlesScreen} />
-        <Tab.Screen name="Settings">
-          {() => (
-            <SettingsScreen 
-              isDarkMode={isDarkMode} 
-              toggleDarkMode={toggleDarkMode} 
-            />
-          )}
-        </Tab.Screen>
-      </Tab.Navigator>
-    </NavigationContainer>
+    <SafeAreaProvider>
+      <NavigationContainer theme={navTheme}>
+        <Tab.Navigator
+          screenOptions={({ route }) => ({
+            tabBarIcon: ({ color, size }) => {
+              let iconName;
+              if (route.name === 'Home') {
+                iconName = 'home-outline';
+              } else if (route.name === 'Crypto') {
+                iconName = 'logo-bitcoin'; 
+              } else if (route.name === 'Stocks') {
+                iconName = 'bar-chart-outline'; 
+              } else if (route.name === 'Saved Articles') {
+                iconName = 'bookmark-outline';
+              } else if (route.name === 'Settings') {
+                iconName = 'settings-outline';
+              }
+              return <Ionicons name={iconName} size={size} color={color} />;
+            },
+          })}
+        >
+          <Tab.Screen name="Home" component={HomeStack} />
+          <Tab.Screen name="Crypto" component={CategoriesScreen} />
+          <Tab.Screen name="Stocks" component={StocksScreen} />
+          <Tab.Screen name="Saved Articles" component={SavedArticlesScreen} />
+          <Tab.Screen name="Settings">
+            {() => (
+              <SettingsScreen 
+                isDarkMode={isDarkMode} 
+                toggleDarkMode={toggleDarkMode} 
+              />
+            )}
+          </Tab.Screen>
+        </Tab.Navigator>
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 }
